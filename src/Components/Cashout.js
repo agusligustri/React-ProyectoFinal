@@ -11,7 +11,7 @@ export const Cashout = (props) => {
 
     const history = useHistory();
 
-    const { shoppingCart, totalPrice, totalQty, dispatch } = useContext(CartContext);
+    const { totalPrice, totalQty, dispatch } = useContext(CartContext);
 
     // Definiendo states
     const [name, setName] = useState('');
@@ -47,15 +47,12 @@ export const Cashout = (props) => {
                     BuyerCell: cellphone,
                     BuyerAddress: address,
                     BuyerPayment: totalPrice,
-                    BuyerQuantity: totalQty
+                    BuyerQuantity: totalQty,
                 }).then(() => {
                     setCellphone('');
                     setAddress('');
                     dispatch({ type: 'EMPTY' })
-                    setSuccessMsg('Su orden ha sido enviada correctamente. ¡Gracias por su compra!. Será redireccionado en 5 segundos');
-                    setTimeout(() => {
-                        history.push('/')
-                    }, 5000)
+                    setSuccessMsg(`Su compra ha sido procesada correctamente. Su ID de compra es ${time}. Por favor anote este número`);
                 }).catch(err => setError(err.message))
             }
         })
@@ -69,6 +66,7 @@ export const Cashout = (props) => {
                 <h2>Detalles de la Compra</h2>
                 <br />
                 {successMsg && <div className='success-msg'>{successMsg}</div>}
+                <br />
                 <form autoComplete="off" className='form-group' onSubmit={cashoutSubmit}>
                     <label htmlFor="name">Nombre</label>
                     <input type="text" className='form-control' required

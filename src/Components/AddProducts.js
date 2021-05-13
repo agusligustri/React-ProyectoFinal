@@ -1,7 +1,5 @@
 /* CARGAR PRODUCTOS A BASE DE DATOS (FIREBASE) */
-
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
 import { storage, db } from '../Config/Config'
 
 export const AddProducts = ({ user }) => {
@@ -44,7 +42,7 @@ export const AddProducts = ({ user }) => {
         }, err => setError(err.message)
             , () => {
                 storage.ref('product-images').child(productImg.name).getDownloadURL().then(url => {
-                    db.collection('Products').add({
+                    db.collection('Productos').add({
                         ProductType: Number(productType),
                         ProductBrand: productBrand,
                         ProductModel: productModel,

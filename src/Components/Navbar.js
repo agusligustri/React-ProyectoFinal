@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import logo from '../images/ecommerce.svg'
 import { Link } from 'react-router-dom'
 import { auth } from '../Config/Config'
 import { Icon } from 'react-icons-kit'

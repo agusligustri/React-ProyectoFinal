@@ -21,14 +21,15 @@ export class App extends Component {
 
         // Obteniendo informacion del usuario para Navbar
         auth.onAuthStateChanged(user => {
-            if (user) {
-                db.collection('RegisteredUsers').doc(user.uid).get().then(snapshot => {
+             if (user) {
+                console.log('logueado')
+                 db.collection('RegisteredUsers').doc(user.uid).get().then(snapshot => {
                     this.setState({
                         user: snapshot.data().Name
                     })
                 })
-            }
-            else {
+            }  else {
+                console.log('sin usuario')
                 this.setState({
                     user: null
                 })
